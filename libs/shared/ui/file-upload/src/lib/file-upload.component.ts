@@ -8,14 +8,17 @@ import {
   viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { formatFileSize } from '@c2pa-mcnl/shared/utils';
 
 @Component({
-  selector: 'app-file-upload',
+  selector: 'lib-shared-ui-file-upload',
   imports: [CommonModule],
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css',
 })
 export class FileUploadComponent {
+  readonly formatFileSize = formatFileSize;
+
   acceptedMimeTypes = input<string[]>([
     'image/jpeg',
     'image/png',
@@ -108,13 +111,5 @@ export class FileUploadComponent {
     if (input?.nativeElement) {
       input.nativeElement.click();
     }
-  }
-
-  formatFileSize(bytes: number): string {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
   }
 }

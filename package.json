@@ -4,6 +4,11 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {},
+  "pnpm": {
+    "overrides": {
+      "vite": "7.3.1"
+    }
+  },
   "dependencies": {
     "@angular/common": "~21.0.0",
     "@angular/compiler": "~21.0.0",
@@ -12,11 +17,12 @@
     "@angular/platform-browser": "~21.0.0",
     "@angular/router": "~21.0.0",
     "@nx/cypress": "^22.3.3",
+    "@nx/jest": "^22.4.4",
     "commander": "^14.0.3",
     "rxjs": "~7.8.0"
   },
   "devDependencies": {
-    "@analogjs/vite-plugin-angular": "~2.1.2",
+    "@analogjs/vite-plugin-angular": "~2.1.3",
     "@analogjs/vitest-angular": "~2.1.2",
     "@angular-devkit/core": "~21.0.0",
     "@angular-devkit/schematics": "~21.0.0",
@@ -26,6 +32,7 @@
     "@angular/language-service": "~21.0.0",
     "@eslint/js": "^9.8.0",
     "@nx/angular": "22.3.3",
+    "@nx/esbuild": "22.3.3",
     "@nx/eslint": "22.3.3",
     "@nx/eslint-plugin": "22.3.3",
     "@nx/js": "22.3.3",
@@ -45,6 +52,7 @@
     "autoprefixer": "^10.4.0",
     "did-jwt": "^8.0.0",
     "did-jwt-vc": "^4.0.0",
+    "esbuild": "^0.19.2",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^10.0.0",
     "jsdom": "^27.1.0",
@@ -57,7 +65,7 @@
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
     "typescript-eslint": "^8.40.0",
-    "vite": "^7.0.0",
+    "vite": "^7.3.1",
     "vitest": "^4.0.8"
   }
 }

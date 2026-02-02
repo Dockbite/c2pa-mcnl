@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { FileUploadComponent } from '@c2pa-mcnl/shared/ui/file-upload';
+import { formatFileSize } from '@c2pa-mcnl/shared/utils';
 
 @Component({
   imports: [CommonModule, RouterModule, FileUploadComponent],
@@ -10,6 +11,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
   styleUrl: './app.css',
 })
 export class App {
+  readonly formatFileSize = formatFileSize;
   protected title = 'signing-webapp';
 
   // Configure accepted MIME types
@@ -37,13 +39,5 @@ export class App {
   onUploadError(error: string): void {
     console.error('Upload error:', error);
     this.uploadedFile = null;
-  }
-
-  formatFileSize(bytes: number): string {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return Math.round((bytes / Math.pow(k, i)) * 100) / 100 + ' ' + sizes[i];
   }
 }

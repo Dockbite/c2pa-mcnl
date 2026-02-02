@@ -4,12 +4,12 @@
       C2PA MCNL - Signeer tool
     </h1>
 
-    <app-file-upload
+    <lib-shared-ui-file-upload
       [acceptedMimeTypes]="acceptedMimeTypes"
       [maxFileSizeBytes]="maxFileSizeBytes"
       (fileSelected)="onFileSelected($event)"
       (uploadError)="onUploadError($event)"
-    ></app-file-upload>
+    ></lib-shared-ui-file-upload>
 
     @if (uploadedFile) {
     <div class="mt-8 bg-white rounded-lg shadow-md p-6">
