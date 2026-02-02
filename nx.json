@@ -36,6 +36,11 @@
     "@nx/vitest:test": {
       "cache": true,
       "inputs": ["default", "^production"]
+    },
+    "@nx/js:tsc": {
+      "cache": true,
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     }
   },
   "plugins": [
@@ -69,5 +74,8 @@
     "@nx/angular:component": {
       "style": "css"
     }
+  },
+  "tui": {
+    "enabled": false
   }
 }

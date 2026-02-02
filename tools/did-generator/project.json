@@ -1,0 +1,54 @@
+{
+  "name": "did-generator",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "tools/did-generator/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/tools/did-generator",
+        "main": "tools/did-generator/src/index.ts",
+        "tsConfig": "tools/did-generator/tsconfig.lib.json",
+        "assets": ["tools/did-generator/*.md"]
+      }
+    },
+    "help": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/did-generator/src/index.js --help"
+      }
+    },
+    "generate": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/did-generator/src/index.js generate"
+      }
+    },
+    "keys": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/did-generator/src/index.js keys"
+      }
+    },
+    "did": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/did-generator/src/index.js did"
+      }
+    },
+    "credential": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/did-generator/src/index.js credential"
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ export default [
             },
             {
               sourceTag: 'scope:shared',
-              onlyDependOnLibsWithTag: ['scope:shared'],
+              onlyDependOnLibsWithTags: ['scope:shared'],
             },
             {
               sourceTag: 'type:util',

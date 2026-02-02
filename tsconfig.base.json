@@ -13,8 +13,11 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
+    "esModuleInterop": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@c2pa-mcnl/tools/did-generator": ["tools/did-generator/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
