@@ -1,6 +1,6 @@
 # c2pa-mcnl
-![GitHub Created At](https://img.shields.io/github/created-at/Dockbite/c2pa-mcnl)
 ![GitHub License](https://img.shields.io/github/license/Dockbite/c2pa-mcnl)
+![GitHub Created At](https://img.shields.io/github/created-at/Dockbite/c2pa-mcnl)
 ![GitHub contributors](https://img.shields.io/github/contributors/Dockbite/c2pa-mcnl)
 
 C2PA implementation for Media Campus Nederland (MCNL) using Digital Verifiable Credentials (DVC) and an independent trust list.
@@ -59,14 +59,14 @@ This tool will most likely not be served publicly, as it requires a x509 certifi
 The repository is structured as an Nx monorepo, which allows for efficient management of multiple projects, packages and libraries within a single codebase. The main components of the repository include:
 
 - `./apps`
-  - [verify-webapp](apps/verify-webapp/README.md): The verification website for C2PA manifests.
-  - [signing-webapp](apps/signing-webapp/README.md): The web-based signing tool for attaching C2PA manifests to media files.
+  - [verify-webapp](apps/verify-webapp/README.md): A verification website for C2PA manifests.
+  - [signing-webapp](apps/signing-webapp/README.md): A web-based signing tool for attaching C2PA manifests to media files.
 - `./libs`
   - `verify-webapp/*`: Grouping folder for libraries related to the verification webapp.
   - `signing-webapp/*`: Grouping folder for libraries related to the signing web
   - `shared/*`: Grouping folder for shared libraries used across multiple apps.
-- `./packages`
-  - todo
+- `./tools`
+  - [did-generator](./tools/did-generator/README.md): A CLI tool for generating Decentralized Identifiers (DIDs) for testing purposes.
 
 ### ESLint
 With the help of the `@nx/enforce-module-boundaries` rule, this monorepo enforces strict boundaries between different projects and libraries. This ensures that each project only depends on the libraries it is allowed to use, promoting modularity and maintainability.
@@ -85,13 +85,19 @@ Learn more:
 - [Enterprise Angular Monorepo Patterns](https://go.nx.dev/angular-patterns-ebook)
 
 ## Install
-TODO
+The project uses [PNPM](https://pnpm.io/installation) as the package manager. To install the dependencies, run the following command in the root directory:
+
+`pnpm install`
 
 ## Usage
-TODO
+`TODO`
 
 ## Contributing
-TODO
+
+Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+
+Please make sure to update tests as appropriate and follow the existing code style.
+
 
 ## License
 
