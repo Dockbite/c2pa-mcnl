@@ -12,7 +12,8 @@
         "outputPath": "dist/tools/did-generator",
         "main": "tools/did-generator/src/index.ts",
         "tsConfig": "tools/did-generator/tsconfig.lib.json",
-        "assets": ["tools/did-generator/*.md"]
+        "assets": ["tools/did-generator/*.md"],
+        "clean": false
       }
     },
     "help": {

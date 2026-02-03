@@ -2,6 +2,10 @@
 
 CLI tool for generating DIDs, keys, and issuing credentials.
 
+### Caveat
+
+Be aware, the generated `dist/did-generator` folder is not automatically re-generated. This is so that multiple output folders can be created without overwriting previous outputs. If you want to regenerate the `dist/did-generator` folder, you will need to delete it manually before running the build command again.
+
 ### CLI Usage
 
 ```bash
