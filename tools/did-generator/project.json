@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "tools/did-generator/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:did-generator", "type:tool"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
