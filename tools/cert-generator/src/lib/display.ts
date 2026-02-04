@@ -1,4 +1,4 @@
-import { log } from './colors';
+import { log } from '@c2pa-mcnl/shared/utils';
 
 export function displayCertificateInfo(
   certType: 'root' | 'intermediate' | 'leaf',

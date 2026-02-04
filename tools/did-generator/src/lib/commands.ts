@@ -1,25 +1,20 @@
 import fs from 'node:fs';
-import path from 'node:path';
 import { Command } from 'commander';
-import { header, log } from './colors';
 import { displayFinalSummary } from './display';
 import { collectCredentialData } from './credential-data-collector';
-import { createReadlineInterface, question } from './readline-helper';
 import { issueCredential } from './credential-issuer';
 import { createDIDDocument } from './did-generator';
 import { generateKeys } from './key-generator';
+import {
+  createOutputDirectory as createOutputDir,
+  createReadlineInterface,
+  header,
+  log,
+  question,
+} from '@c2pa-mcnl/shared/utils';
 
 function createOutputDirectory(customPath: string) {
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const outputDir =
-    customPath ||
-    path.join(process.cwd(), 'output', 'did-generator', timestamp);
-
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-
-  return outputDir;
+  return createOutputDir('did-generator', customPath);
 }
 
 export async function generateCommand(options: Record<string, any>) {

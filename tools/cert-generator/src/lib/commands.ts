@@ -2,9 +2,14 @@ import fs from 'node:fs';
 import path from 'node:path';
 import * as readline from 'node:readline';
 import { Command } from 'commander';
-import { header, log } from './colors';
 import { displayCertificateInfo, displayFinalSummary } from './display';
-import { createReadlineInterface, question } from './readline-helper';
+import {
+  createOutputDirectory as createOutputDir,
+  createReadlineInterface,
+  header,
+  log,
+  question,
+} from '@c2pa-mcnl/shared/utils';
 import {
   type CertificateSubject,
   generateCertificateChain,
@@ -35,26 +40,7 @@ interface CommandOptions {
 }
 
 function createOutputDirectory(customPath?: string): string {
-  if (customPath) {
-    if (!fs.existsSync(customPath)) {
-      fs.mkdirSync(customPath, { recursive: true });
-    }
-    return path.resolve(customPath);
-  }
-
-  const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
-  const outputDir = path.join(
-    process.cwd(),
-    'output',
-    'cert-generator',
-    timestamp,
-  );
-
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-
-  return outputDir;
+  return createOutputDir('cert-generator', customPath);
 }
 
 async function collectSubjectData(

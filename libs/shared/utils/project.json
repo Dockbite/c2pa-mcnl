@@ -6,6 +6,16 @@
   "tags": ["scope:shared", "type:util"],
   "// targets": "to see all targets run: nx show project shared-utils --web",
   "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/shared/utils",
+        "main": "libs/shared/utils/src/index.ts",
+        "tsConfig": "libs/shared/utils/tsconfig.lib.json",
+        "assets": []
+      }
+    },
     "lint": {
       "executor": "@nx/eslint:lint"
     }
