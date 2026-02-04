@@ -14,6 +14,41 @@
         "tsConfig": "tools/cert-generator/tsconfig.lib.json",
         "assets": ["tools/cert-generator/*.md"]
       }
+    },
+    "help": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/cert-generator/src/index.js --help"
+      }
+    },
+    "chain": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/cert-generator/src/index.js chain"
+      }
+    },
+    "root": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/cert-generator/src/index.js root"
+      }
+    },
+    "intermediate": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/cert-generator/src/index.js intermediate"
+      }
+    },
+    "leaf": {
+      "executor": "nx:run-commands",
+      "dependsOn": ["build"],
+      "options": {
+        "command": "node dist/tools/cert-generator/src/index.js leaf"
+      }
     }
   }
 }

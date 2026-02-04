@@ -12,7 +12,8 @@ import { generateKeys } from './key-generator';
 function createOutputDirectory(customPath: string) {
   const timestamp = new Date().toISOString().replace(/[:.]/g, '-').slice(0, -5);
   const outputDir =
-    customPath || path.join(__dirname, '..', 'output', timestamp);
+    customPath ||
+    path.join(process.cwd(), 'output', 'did-generator', timestamp);
 
   if (!fs.existsSync(outputDir)) {
     fs.mkdirSync(outputDir, { recursive: true });
