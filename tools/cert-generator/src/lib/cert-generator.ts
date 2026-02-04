@@ -309,7 +309,7 @@ export async function generateTestCertificate(value = '') {
   const root = await generateRootCertificate({
     country: 'NL',
     state: 'Zuid-Holland',
-    organization: `Dawn Technology${value}`,
+    organization: `My Company${value}`,
     organizationalUnit: 'Development',
     commonName: `Root${value}`,
   });
@@ -318,7 +318,7 @@ export async function generateTestCertificate(value = '') {
     {
       country: 'NL',
       state: 'Zuid-Holland',
-      organization: `Dawn Technology${value}`,
+      organization: `My Company${value}`,
       organizationalUnit: 'Development',
       commonName: `Intermediate${value}`,
     },
@@ -330,7 +330,7 @@ export async function generateTestCertificate(value = '') {
     {
       country: 'NL',
       state: 'Zuid-Holland',
-      organization: `Dawn Technology${value}`,
+      organization: `My Company${value}`,
       organizationalUnit: 'Development',
       commonName: `Leaf${value}`,
     },
