@@ -16,11 +16,12 @@
     "esModuleInterop": true,
     "baseUrl": ".",
     "paths": {
-      "@c2pa-mcnl/tools/did-generator": ["tools/did-generator/src/index.ts"],
       "@c2pa-mcnl/shared/ui/file-upload": [
         "libs/shared/ui/file-upload/src/index.ts"
       ],
-      "@c2pa-mcnl/shared/utils": ["libs/shared/utils/src/index.ts"]
+      "@c2pa-mcnl/shared/utils": ["libs/shared/utils/src/index.ts"],
+      "@c2pa-mcnl/tools/did-generator": ["tools/did-generator/src/index.ts"],
+      "@c2pa-mcnl/tools/cert-generator": ["tools/cert-generator/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

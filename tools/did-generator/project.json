@@ -3,7 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "tools/did-generator/src",
   "projectType": "library",
-  "tags": [],
+  "tags": ["scope:did-generator", "type:tool"],
   "targets": {
     "build": {
       "executor": "@nx/js:tsc",
@@ -12,8 +12,7 @@
         "outputPath": "dist/tools/did-generator",
         "main": "tools/did-generator/src/index.ts",
         "tsConfig": "tools/did-generator/tsconfig.lib.json",
-        "assets": ["tools/did-generator/*.md"],
-        "clean": false
+        "assets": ["tools/did-generator/*.md"]
       }
     },
     "help": {

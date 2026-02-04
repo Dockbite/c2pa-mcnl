@@ -28,6 +28,17 @@ export default [
               ],
             },
             {
+              sourceTag: 'scope:cert-generator',
+              onlyDependOnLibsWithTags: [
+                'scope:cert-generator',
+                'scope:shared',
+              ],
+            },
+            {
+              sourceTag: 'scope:did-generator',
+              onlyDependOnLibsWithTags: ['scope:did-generator', 'scope:shared'],
+            },
+            {
               sourceTag: 'scope:shared',
               onlyDependOnLibsWithTags: ['scope:shared'],
             },
