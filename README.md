@@ -29,7 +29,9 @@ The project utilizes JavaScript/TypeScript for the C2PA implementation, leveragi
 Creating an SDK of the entire C2PA specification is a complex task. Therefore, the project focuses on using existing resources, such as:
 
 - [c2pa-ts](https://github.com/TrustNXT/c2pa-ts): A TypeScript implementation of the C2PA specification maintained (indepentantly) by [TrustNXT](https://trustnxt.com/).
-- [c2pa-js](https://github.com/contentauth/c2pa-js): An official C2PA JavaScript implementation maintained by the Content Authenticity Initiative.
+- [c2pa-js](https://github.com/contentauth/c2pa-js): A C2PA JavaScript implementation maintained by the Content Authenticity Initiative, which wraps the Rust implementation in WebAssembly.
+- [c2pa-rs](https://github.com/contentauth/c2pa-rs): The "official" C2PA Rust implementation maintained by the Content Authenticity Initiative
+- [c2patool](https://github.com/contentauth/c2pa-rs/tree/main/cli): A command-line tool for working with C2PA manifests, built on top of the c2pa-rs library.
 - [c2pa-attacks](https://github.com/contentauth/c2pa-attacks): A repository containing various attack scenarios and test cases for C2PA implementations, useful for testing and validation. Maintained by the Content Authenticity Initiative.
 - [c2pa-explorations](https://github.com/christianpaquin/c2pa-explorations/tree/main?tab=readme-ov-file): Experimentation and prototyping done by [Christian Paquin](https://www.microsoft.com/en-us/research/people/cpaquin/), a Microsoft engineer.
 
