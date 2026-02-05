@@ -6,48 +6,53 @@
   "tags": ["type:tool", "runtime:node"],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
       "options": {
         "outputPath": "dist/tools/cert-generator",
         "main": "tools/cert-generator/src/index.ts",
         "tsConfig": "tools/cert-generator/tsconfig.lib.json",
-        "assets": ["tools/cert-generator/*.md"]
+        "outputFileName": "index.cjs",
+        "platform": "node",
+        "format": ["cjs"],
+        "bundle": true,
+        "assets": []
       }
     },
     "help": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/cert-generator/src/index.js --help"
+        "command": "node dist/tools/cert-generator/index.cjs --help"
       }
     },
     "chain": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/cert-generator/src/index.js chain"
+        "command": "node dist/tools/cert-generator/index.cjs chain"
       }
     },
     "root": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/cert-generator/src/index.js root"
+        "command": "node dist/tools/cert-generator/index.cjs root"
       }
     },
     "intermediate": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/cert-generator/src/index.js intermediate"
+        "command": "node dist/tools/cert-generator/index.cjs intermediate"
       }
     },
     "leaf": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/cert-generator/src/index.js leaf"
+        "command": "node dist/tools/cert-generator/index.cjs leaf"
       }
     }
   }

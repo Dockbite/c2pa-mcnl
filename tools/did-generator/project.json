@@ -6,48 +6,53 @@
   "tags": ["type:tool", "runtime:node"],
   "targets": {
     "build": {
-      "executor": "@nx/js:tsc",
+      "executor": "@nx/esbuild:esbuild",
       "outputs": ["{options.outputPath}"],
+      "dependsOn": ["^build"],
       "options": {
         "outputPath": "dist/tools/did-generator",
         "main": "tools/did-generator/src/index.ts",
         "tsConfig": "tools/did-generator/tsconfig.lib.json",
-        "assets": ["tools/did-generator/*.md"]
+        "outputFileName": "index.cjs",
+        "platform": "node",
+        "format": ["cjs"],
+        "bundle": true,
+        "assets": []
       }
     },
     "help": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/did-generator/src/index.js --help"
+        "command": "node dist/tools/did-generator/index.cjs --help"
       }
     },
     "generate": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/did-generator/src/index.js generate"
+        "command": "node dist/tools/did-generator/index.cjs generate"
       }
     },
     "keys": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/did-generator/src/index.js keys"
+        "command": "node dist/tools/did-generator/index.cjs keys"
       }
     },
     "did": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/did-generator/src/index.js did"
+        "command": "node dist/tools/did-generator/index.cjs did"
       }
     },
     "credential": {
       "executor": "nx:run-commands",
       "dependsOn": ["build"],
       "options": {
-        "command": "node dist/tools/did-generator/src/index.js credential"
+        "command": "node dist/tools/did-generator/index.cjs credential"
       }
     }
   }
