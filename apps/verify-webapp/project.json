@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/verify-webapp/src",
-  "tags": ["scope:verify-webapp"],
+  "tags": ["type:app"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",

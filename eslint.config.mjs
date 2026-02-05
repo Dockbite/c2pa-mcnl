@@ -16,6 +16,7 @@ export default [
           enforceBuildableLibDependency: true,
           allow: ['^.*/eslint(\\.base)?\\.config\\.[cm]?[jt]s$'],
           depConstraints: [
+            // Scope rules
             {
               sourceTag: 'scope:verify-webapp',
               onlyDependOnLibsWithTags: ['scope:verify-webapp', 'scope:shared'],
@@ -28,23 +29,48 @@ export default [
               ],
             },
             {
-              sourceTag: 'scope:cert-generator',
-              onlyDependOnLibsWithTags: [
-                'scope:cert-generator',
-                'scope:shared',
-              ],
-            },
-            {
-              sourceTag: 'scope:did-generator',
-              onlyDependOnLibsWithTags: ['scope:did-generator', 'scope:shared'],
-            },
-            {
               sourceTag: 'scope:shared',
               onlyDependOnLibsWithTags: ['scope:shared'],
             },
+            { sourceTag: 'type:util', onlyDependOnLibsWithTags: ['type:util'] },
+
+            // Type/layer rules
             {
-              sourceTag: 'type:util',
+              sourceTag: 'type:app',
+              onlyDependOnLibsWithTags: [
+                'type:lib',
+                'type:feature',
+                'type:ui',
+                'type:data-access',
+                'type:util',
+              ],
+            },
+            {
+              sourceTag: 'type:feature',
+              onlyDependOnLibsWithTags: [
+                'type:ui',
+                'type:data-access',
+                'type:util',
+              ],
+            },
+            { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:util'] },
+            {
+              sourceTag: 'type:data-access',
               onlyDependOnLibsWithTags: ['type:util'],
+            },
+            {
+              sourceTag: 'type:tool',
+              onlyDependOnLibsWithTags: ['type:util', 'type:lib'],
+            },
+
+            // Runtime rules
+            {
+              sourceTag: 'runtime:browser',
+              notDependOnLibsWithTags: ['runtime:node'],
+            },
+            {
+              sourceTag: 'runtime:universal',
+              notDependOnLibsWithTags: ['runtime:node', 'runtime:browser'],
             },
           ],
         },

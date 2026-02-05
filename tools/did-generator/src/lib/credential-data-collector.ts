@@ -1,5 +1,5 @@
 import { Interface } from 'node:readline';
-import { question } from '@c2pa-mcnl/shared/utils';
+import { question } from '@c2pa-mcnl/shared/node/utils';
 
 export async function collectCredentialData(
   rl?: Interface,

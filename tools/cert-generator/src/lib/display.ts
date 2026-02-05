@@ -1,4 +1,4 @@
-import { log } from '@c2pa-mcnl/shared/utils';
+import { log } from '@c2pa-mcnl/shared/node/utils';
 
 export function displayCertificateInfo(
   certType: 'root' | 'intermediate' | 'leaf',

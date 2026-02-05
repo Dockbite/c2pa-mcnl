@@ -1,4 +1,4 @@
-import { log } from '@c2pa-mcnl/shared/utils';
+import { log } from '@c2pa-mcnl/shared/node/utils';
 
 export function displayFinalSummary(domain: string, outputDir: string) {
   const actualDomain = domain.replace(/%3A/g, ':');

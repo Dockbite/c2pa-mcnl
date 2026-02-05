@@ -4,7 +4,7 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/signing-webapp/src",
-  "tags": ["scope:signing-webapp"],
+  "tags": ["type:app"],
   "targets": {
     "build": {
       "executor": "@angular/build:application",
