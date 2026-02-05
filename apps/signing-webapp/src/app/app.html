@@ -1,44 +1,9 @@
-<div class="min-h-screen bg-gray-50 py-12 px-4">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="text-3xl font-bold text-gray-900 mb-4 text-center">
-      C2PA MCNL - Signeer tool
+<div class="min-h-screen bg-gray-100">
+  <div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold text-gray-900 mb-12 text-center">
+      {{title}}
     </h1>
 
-    <lib-shared-ui-file-upload
-      [acceptedMimeTypes]="acceptedMimeTypes"
-      [maxFileSizeBytes]="maxFileSizeBytes"
-      (fileSelected)="onFileSelected($event)"
-      (uploadError)="onUploadError($event)"
-    ></lib-shared-ui-file-upload>
-
-    @if (uploadedFile) {
-    <div class="mt-8 bg-white rounded-lg shadow-md p-6">
-      <h2 class="text-xl font-semibold text-gray-800 mb-4">File Information</h2>
-      <dl class="grid grid-cols-1 gap-4">
-        <div>
-          <dt class="text-sm font-medium text-gray-500">File Name</dt>
-          <dd class="mt-1 text-sm text-gray-900">{{ uploadedFile.name }}</dd>
-        </div>
-        <div>
-          <dt class="text-sm font-medium text-gray-500">File Type</dt>
-          <dd class="mt-1 text-sm text-gray-900">{{ uploadedFile.type }}</dd>
-        </div>
-        <div>
-          <dt class="text-sm font-medium text-gray-500">File Size</dt>
-          <dd class="mt-1 text-sm text-gray-900">
-            {{ formatFileSize(uploadedFile.size) }}
-          </dd>
-        </div>
-        <div>
-          <dt class="text-sm font-medium text-gray-500">Last Modified</dt>
-          <dd class="mt-1 text-sm text-gray-900">
-            {{ uploadedFile.lastModified | date: 'medium' }}
-          </dd>
-        </div>
-      </dl>
-    </div>
-    }
+    <router-outlet></router-outlet>
   </div>
 </div>
-
-<router-outlet></router-outlet>

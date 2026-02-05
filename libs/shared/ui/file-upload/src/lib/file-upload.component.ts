@@ -3,12 +3,14 @@ import {
   computed,
   ElementRef,
   input,
+  model,
   output,
   signal,
   viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { formatFileSize } from '@c2pa-mcnl/shared/utils';
+import { FormValueControl } from '@angular/forms/signals';
 
 @Component({
   selector: 'lib-shared-ui-file-upload',
@@ -16,28 +18,26 @@ import { formatFileSize } from '@c2pa-mcnl/shared/utils';
   templateUrl: './file-upload.component.html',
   styleUrl: './file-upload.component.css',
 })
-export class FileUploadComponent {
-  readonly formatFileSize = formatFileSize;
+export class FileUploadComponent implements FormValueControl<File | null> {
+  readonly value = model<File | null>(null);
 
-  acceptedMimeTypes = input<string[]>([
-    'image/jpeg',
-    'image/png',
-    'image/heic',
-    'image/heif',
-    'video/mp4',
-    'audio/mpeg',
-  ]);
-  maxFileSizeBytes = input<number>(1024 * 1024 * 1024); // 1GB default
-  fileSelected = output<File>();
+  fieldId = input<string>(
+    `file-upload-${Math.random().toString(36).substring(2, 15)}`,
+  );
+  acceptedMimeTypes = input.required<string[]>();
+  maxFileSizeBytes = input.required<number>();
+
   uploadError = output<string>();
 
   isDragging = signal(false);
   selectedFile = signal<File | null>(null);
-  errorMessage = signal<string>('');
+  errorMessage = model<string>('');
 
   fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
   acceptAttribute = computed(() => this.acceptedMimeTypes().join(','));
+
+  readonly formatFileSize = formatFileSize;
 
   onDragOver(event: DragEvent): void {
     event.preventDefault();
@@ -93,7 +93,7 @@ export class FileUploadComponent {
     }
 
     this.selectedFile.set(file);
-    this.fileSelected.emit(file);
+    this.value.set(file);
   }
 
   removeFile(): void {

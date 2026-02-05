@@ -1,7 +1,6 @@
 import {
   AuthorityKeyIdentifierExtension,
   BasicConstraintsExtension,
-  ExtendedKeyUsage,
   ExtendedKeyUsageExtension,
   KeyUsageFlags,
   KeyUsagesExtension,
@@ -39,6 +38,13 @@ export interface LeafCertificateResult {
   privateKeyPem: string;
 }
 
+// ---- C2PA EKUs ----
+// C2PA v2.2 claim signing EKU:
+const C2PA_CLAIM_SIGNING_EKU = '1.3.6.1.4.1.62558.2.1';
+// Back-compat EKUs seen/allowed by older validators:
+const ID_KP_EMAIL_PROTECTION = '1.3.6.1.5.5.7.3.4';
+const ID_KP_DOCUMENT_SIGNING = '1.3.6.1.5.5.7.3.36';
+
 /**
  * Generate a self-signed root certificate
  */
@@ -68,6 +74,7 @@ export async function generateRootCertificate(
       },
       extensions: [
         new BasicConstraintsExtension(true, 3, true),
+
         new KeyUsagesExtension(
           KeyUsageFlags.digitalSignature +
             KeyUsageFlags.keyCertSign +
@@ -125,7 +132,15 @@ export async function generateIntermediateCertificate(
       },
       extensions: [
         new BasicConstraintsExtension(true, 2, true),
-        new ExtendedKeyUsageExtension([ExtendedKeyUsage.emailProtection], true),
+        // C2PA/compat EKUs (must be present and non-empty for leaf certs).
+        new ExtendedKeyUsageExtension(
+          [
+            C2PA_CLAIM_SIGNING_EKU,
+            ID_KP_EMAIL_PROTECTION,
+            ID_KP_DOCUMENT_SIGNING,
+          ],
+          true,
+        ),
         new KeyUsagesExtension(
           KeyUsageFlags.digitalSignature + KeyUsageFlags.keyCertSign,
           true,
@@ -184,7 +199,15 @@ export async function generateLeafCertificate(
       },
       extensions: [
         new BasicConstraintsExtension(false, 0, true),
-        new ExtendedKeyUsageExtension([ExtendedKeyUsage.emailProtection], true),
+        // C2PA/compat EKUs (must be present and non-empty for leaf certs).
+        new ExtendedKeyUsageExtension(
+          [
+            C2PA_CLAIM_SIGNING_EKU,
+            ID_KP_EMAIL_PROTECTION,
+            ID_KP_DOCUMENT_SIGNING,
+          ],
+          true,
+        ),
         new KeyUsagesExtension(KeyUsageFlags.digitalSignature, true),
         await SubjectKeyIdentifierExtension.create(keys.publicKey, false),
         await AuthorityKeyIdentifierExtension.create(

@@ -53,7 +53,10 @@ export default [
                 'type:util',
               ],
             },
-            { sourceTag: 'type:ui', onlyDependOnLibsWithTags: ['type:util'] },
+            {
+              sourceTag: 'type:ui',
+              onlyDependOnLibsWithTags: ['type:ui', 'type:util'],
+            },
             {
               sourceTag: 'type:data-access',
               onlyDependOnLibsWithTags: ['type:util'],
