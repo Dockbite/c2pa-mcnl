@@ -34,7 +34,6 @@ export class FileUploadComponent implements FormValueControl<File | null> {
 
   isDragging = signal(false);
   selectedFile = signal<File | null>(null);
-  uploadErrorMessage = model<string>('');
 
   fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
@@ -42,9 +41,6 @@ export class FileUploadComponent implements FormValueControl<File | null> {
 
   errorMessages = computed(() => {
     const errors: string[] = [];
-    if (this.uploadErrorMessage()) {
-      errors.push(this.uploadErrorMessage());
-    }
     if (this.errors()) {
       for (const err of this.errors()) {
         if (err.message) {
@@ -89,33 +85,14 @@ export class FileUploadComponent implements FormValueControl<File | null> {
   }
 
   private handleFile(file: File): void {
-    this.uploadErrorMessage.set('');
-
-    // Validate file size
-    if (file.size > this.maxFileSizeBytes()) {
-      const maxSizeMB = Math.round(this.maxFileSizeBytes() / (1024 * 1024));
-      const error = `File size exceeds the maximum limit of ${maxSizeMB}MB`;
-      this.uploadErrorMessage.set(error);
-      return;
-    }
-
-    // Validate MIME type
-    if (
-      this.acceptedMimeTypes().length > 0 &&
-      !this.acceptedMimeTypes().includes(file.type)
-    ) {
-      const error = `File type "${file.type}" is not supported. Accepted types: ${this.acceptedMimeTypes().join(', ')}`;
-      this.uploadErrorMessage.set(error);
-      return;
-    }
-
     this.selectedFile.set(file);
     this.value.set(file);
   }
 
   removeFile(): void {
     this.selectedFile.set(null);
-    this.uploadErrorMessage.set('');
+    this.value.set(null);
+
     // Clear the file input
     const input = this.fileInput()?.nativeElement;
     if (input) {

@@ -2,7 +2,7 @@ import { SchemaPath, validateAsync } from '@angular/forms/signals';
 import { resource } from '@angular/core';
 import * as x509 from '@peculiar/x509';
 
-export async function validate(
+async function validate(
   params: unknown,
 ): Promise<{ kind: string; message: string } | null> {
   if (!params) {
