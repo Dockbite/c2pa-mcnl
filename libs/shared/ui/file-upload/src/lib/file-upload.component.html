@@ -14,9 +14,9 @@
     class="relative border-2 border-dashed rounded-lg transition-all duration-200 ease-in-out"
     [class.border-blue-500]="isDragging()"
     [class.bg-blue-50]="isDragging()"
-    [class.border-gray-300]="!isDragging() && !errorMessage()"
-    [class.border-red-500]="errorMessage()"
-    [class.bg-red-50]="errorMessage()"
+    [class.border-gray-300]="!isDragging() && !hasErrors()"
+    [class.border-red-500]="hasErrors()"
+    [class.bg-red-50]="hasErrors()"
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
     (drop)="onDrop($event)"
@@ -28,8 +28,8 @@
           <svg
             class="mx-auto h-12 w-12 transition-colors"
             [class.text-blue-500]="isDragging()"
-            [class.text-gray-400]="!isDragging() && !errorMessage()"
-            [class.text-red-500]="errorMessage()"
+            [class.text-gray-400]="!isDragging() && !hasErrors()"
+            [class.text-red-500]="hasErrors()"
             stroke="currentColor"
             fill="none"
             viewBox="0 0 48 48"
@@ -133,4 +133,29 @@
       </div>
     }
   </div>
+
+  @for (errorMessage of errorMessages(); track $index) {
+    <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <div class="flex">
+        <div class="flex-shrink-0">
+          <svg
+            class="h-5 w-5 text-red-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+        <div class="ml-3">
+          <p class="text-sm text-red-700">{{ errorMessage }}</p>
+        </div>
+      </div>
+    </div>
+  }
 </div>

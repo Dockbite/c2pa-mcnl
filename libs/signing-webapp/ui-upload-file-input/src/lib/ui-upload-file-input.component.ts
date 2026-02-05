@@ -1,4 +1,4 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { FileUploadComponent } from '@c2pa-mcnl/shared/ui/file-upload';
 import { FieldTree, FormField } from '@angular/forms/signals';
 
@@ -19,6 +19,4 @@ export class UiUploadFileInputComponent {
   acceptedMimeTypes = input.required<string[]>();
   maxFileSizeBytes = input.required<number>();
   control = input.required<FieldTree<File | null>>();
-
-  uploadError = signal<string>('');
 }

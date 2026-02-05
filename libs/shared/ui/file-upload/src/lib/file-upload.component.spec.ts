@@ -146,7 +146,7 @@ describe('FileUploadComponent', () => {
       inputEl.triggerEventHandler('change', mockEvent);
 
       expect(component.selectedFile()).toBeNull();
-      expect(component.errorMessage()).toContain('File size exceeds');
+      expect(component.uploadErrorMessage()).toContain('File size exceeds');
       expect(uploadErrorSpy).toHaveBeenCalledWith(
         expect.stringMatching(/File size exceeds/),
       );
@@ -159,7 +159,7 @@ describe('FileUploadComponent', () => {
       inputEl.triggerEventHandler('change', mockEvent);
 
       expect(component.selectedFile()).toBeNull();
-      expect(component.errorMessage()).toContain('not supported');
+      expect(component.uploadErrorMessage()).toContain('not supported');
       expect(uploadErrorSpy).toHaveBeenCalledWith(
         expect.stringMatching(/not supported/),
       );
@@ -167,14 +167,14 @@ describe('FileUploadComponent', () => {
 
     it('should clear previous errors when a valid file is selected', () => {
       // Set invalid state first
-      component.errorMessage.set('Previous error');
+      component.uploadErrorMessage.set('Previous error');
 
       const inputEl = fixture.debugElement.query(By.css('input[type="file"]'));
       const mockEvent = { target: { files: [VALID_FILE] } };
 
       inputEl.triggerEventHandler('change', mockEvent);
 
-      expect(component.errorMessage()).toBe('');
+      expect(component.uploadErrorMessage()).toBe('');
       expect(component.selectedFile()).toBe(VALID_FILE);
     });
   });
@@ -183,7 +183,7 @@ describe('FileUploadComponent', () => {
     it('should remove file and clear input value', () => {
       // Setup initial state
       component.selectedFile.set(VALID_FILE);
-      component.errorMessage.set('Some error');
+      component.uploadErrorMessage.set('Some error');
       fixture.detectChanges();
 
       const inputEl = component.fileInput()!.nativeElement;
@@ -198,7 +198,7 @@ describe('FileUploadComponent', () => {
       component.removeFile();
 
       expect(component.selectedFile()).toBeNull();
-      expect(component.errorMessage()).toBe('');
+      expect(component.uploadErrorMessage()).toBe('');
       expect(inputEl.value).toBe('');
     });
 

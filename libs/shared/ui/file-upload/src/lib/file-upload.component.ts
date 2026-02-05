@@ -4,15 +4,19 @@ import {
   ElementRef,
   input,
   model,
-  output,
   signal,
   viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { formatFileSize } from '@c2pa-mcnl/shared/utils';
-import { FormValueControl } from '@angular/forms/signals';
+import {
+  FormValueControl,
+  ValidationError,
+  WithOptionalField,
+} from '@angular/forms/signals';
 
 @Component({
+  standalone: true,
   selector: 'lib-shared-ui-file-upload',
   imports: [CommonModule],
   templateUrl: './file-upload.component.html',
@@ -20,6 +24,7 @@ import { FormValueControl } from '@angular/forms/signals';
 })
 export class FileUploadComponent implements FormValueControl<File | null> {
   readonly value = model<File | null>(null);
+  readonly errors = input<readonly WithOptionalField<ValidationError>[]>([]);
 
   fieldId = input<string>(
     `file-upload-${Math.random().toString(36).substring(2, 15)}`,
@@ -27,15 +32,29 @@ export class FileUploadComponent implements FormValueControl<File | null> {
   acceptedMimeTypes = input.required<string[]>();
   maxFileSizeBytes = input.required<number>();
 
-  uploadError = output<string>();
-
   isDragging = signal(false);
   selectedFile = signal<File | null>(null);
-  errorMessage = model<string>('');
+  uploadErrorMessage = model<string>('');
 
   fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
   acceptAttribute = computed(() => this.acceptedMimeTypes().join(','));
+
+  errorMessages = computed(() => {
+    const errors: string[] = [];
+    if (this.uploadErrorMessage()) {
+      errors.push(this.uploadErrorMessage());
+    }
+    if (this.errors()) {
+      for (const err of this.errors()) {
+        if (err.message) {
+          errors.push(err.message);
+        }
+      }
+    }
+    return errors;
+  });
+  hasErrors = computed(() => !!this.errorMessages().length);
 
   readonly formatFileSize = formatFileSize;
 
@@ -70,14 +89,13 @@ export class FileUploadComponent implements FormValueControl<File | null> {
   }
 
   private handleFile(file: File): void {
-    this.errorMessage.set('');
+    this.uploadErrorMessage.set('');
 
     // Validate file size
     if (file.size > this.maxFileSizeBytes()) {
       const maxSizeMB = Math.round(this.maxFileSizeBytes() / (1024 * 1024));
       const error = `File size exceeds the maximum limit of ${maxSizeMB}MB`;
-      this.errorMessage.set(error);
-      this.uploadError.emit(error);
+      this.uploadErrorMessage.set(error);
       return;
     }
 
@@ -87,8 +105,7 @@ export class FileUploadComponent implements FormValueControl<File | null> {
       !this.acceptedMimeTypes().includes(file.type)
     ) {
       const error = `File type "${file.type}" is not supported. Accepted types: ${this.acceptedMimeTypes().join(', ')}`;
-      this.errorMessage.set(error);
-      this.uploadError.emit(error);
+      this.uploadErrorMessage.set(error);
       return;
     }
 
@@ -98,7 +115,7 @@ export class FileUploadComponent implements FormValueControl<File | null> {
 
   removeFile(): void {
     this.selectedFile.set(null);
-    this.errorMessage.set('');
+    this.uploadErrorMessage.set('');
     // Clear the file input
     const input = this.fileInput()?.nativeElement;
     if (input) {
