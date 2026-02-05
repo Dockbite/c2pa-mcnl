@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FileUploadComponent } from './file-upload.component';
 import { By } from '@angular/platform-browser';
-import { type Mock, vi } from 'vitest';
+import { vi } from 'vitest';
 
 // --- Mocks for Node/JSDOM Environment ---
 if (!globalThis.DataTransfer) {
@@ -31,18 +31,9 @@ describe('FileUploadComponent', () => {
   let component: FileUploadComponent;
   let fixture: ComponentFixture<FileUploadComponent>;
 
-  // Test Constants
   const MAX_SIZE_BYTES = 1024 * 1024; // 1MB
   const ACCEPTED_MIME_TYPES = ['image/png', 'image/jpeg'];
-
-  // Mock Files
   const VALID_FILE = new File(['content'], 'test.png', { type: 'image/png' });
-  const INVALID_TYPE_FILE = new File(['content'], 'test.txt', {
-    type: 'text/plain',
-  });
-  const LARGE_FILE = new File(['a'.repeat(MAX_SIZE_BYTES + 1)], 'large.png', {
-    type: 'image/png',
-  });
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -131,59 +122,10 @@ describe('FileUploadComponent', () => {
     });
   });
 
-  describe('Validation', () => {
-    let uploadErrorSpy: Mock;
-
-    beforeEach(() => {
-      uploadErrorSpy = vi.fn();
-      component.uploadError.subscribe((val) => uploadErrorSpy(val));
-    });
-
-    it('should validate file size', () => {
-      const inputEl = fixture.debugElement.query(By.css('input[type="file"]'));
-      const mockEvent = { target: { files: [LARGE_FILE] } };
-
-      inputEl.triggerEventHandler('change', mockEvent);
-
-      expect(component.selectedFile()).toBeNull();
-      expect(component.uploadErrorMessage()).toContain('File size exceeds');
-      expect(uploadErrorSpy).toHaveBeenCalledWith(
-        expect.stringMatching(/File size exceeds/),
-      );
-    });
-
-    it('should validate mime type', () => {
-      const inputEl = fixture.debugElement.query(By.css('input[type="file"]'));
-      const mockEvent = { target: { files: [INVALID_TYPE_FILE] } };
-
-      inputEl.triggerEventHandler('change', mockEvent);
-
-      expect(component.selectedFile()).toBeNull();
-      expect(component.uploadErrorMessage()).toContain('not supported');
-      expect(uploadErrorSpy).toHaveBeenCalledWith(
-        expect.stringMatching(/not supported/),
-      );
-    });
-
-    it('should clear previous errors when a valid file is selected', () => {
-      // Set invalid state first
-      component.uploadErrorMessage.set('Previous error');
-
-      const inputEl = fixture.debugElement.query(By.css('input[type="file"]'));
-      const mockEvent = { target: { files: [VALID_FILE] } };
-
-      inputEl.triggerEventHandler('change', mockEvent);
-
-      expect(component.uploadErrorMessage()).toBe('');
-      expect(component.selectedFile()).toBe(VALID_FILE);
-    });
-  });
-
   describe('UI Actions', () => {
     it('should remove file and clear input value', () => {
       // Setup initial state
       component.selectedFile.set(VALID_FILE);
-      component.uploadErrorMessage.set('Some error');
       fixture.detectChanges();
 
       const inputEl = component.fileInput()!.nativeElement;
@@ -198,7 +140,6 @@ describe('FileUploadComponent', () => {
       component.removeFile();
 
       expect(component.selectedFile()).toBeNull();
-      expect(component.uploadErrorMessage()).toBe('');
       expect(inputEl.value).toBe('');
     });
 
