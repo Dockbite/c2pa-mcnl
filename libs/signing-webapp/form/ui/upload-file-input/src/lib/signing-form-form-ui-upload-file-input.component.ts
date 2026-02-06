@@ -6,9 +6,9 @@ import { FieldTree, FormField } from '@angular/forms/signals';
   selector: 'lib-ui-upload-file-input',
   standalone: true,
   imports: [FileUploadComponent, FormField],
-  templateUrl: './ui-upload-file-input.component.html',
+  templateUrl: './signing-form-form-ui-upload-file-input.component.html',
 })
-export class UiUploadFileInputComponent {
+export class SigningFormFormUiUploadFileInputComponent {
   // UI Inputs
   label = input.required<string>();
   inputId = input.required<string>();
