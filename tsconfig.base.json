@@ -21,17 +21,22 @@
       ],
       "@c2pa-mcnl/tools/did-generator": ["tools/did-generator/src/index.ts"],
       "@c2pa-mcnl/tools/cert-generator": ["tools/cert-generator/src/index.ts"],
-      "@c2pa-mcnl/shared/utils": ["libs/shared/utils/src/index.ts"],
-      "@c2pa-mcnl/shared/node/utils": ["libs/shared/node/utils/src/index.ts"],
-      "@c2pa-mcnl/shared/util-form-validators": [
-        "libs/shared/util-form-validators/src/index.ts"
-      ],
       "@c2pa-mcnl/signing-webapp/form/feature/detail": [
         "libs/signing-webapp/form/feature/detail/src/index.ts"
       ],
       "@c2pa-mcnl/signing-webapp/form/ui/upload-file-input": [
         "libs/signing-webapp/form/ui/upload-file-input/src/index.ts"
-      ]
+      ],
+      "@c2pa-mcnl/shared/utils/validators": [
+        "libs/shared/utils/validators/src/index.ts"
+      ],
+      "@c2pa-mcnl/shared/utils/helpers": [
+        "libs/shared/utils/helpers/src/index.ts"
+      ],
+      "@c2pa-mcnl/shared/utils/constants": [
+        "libs/shared/utils/constants/src/index.ts"
+      ],
+      "@c2pa-mcnl/shared/utils/cli": ["libs/shared/utils/cli/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

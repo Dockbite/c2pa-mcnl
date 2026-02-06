@@ -8,7 +8,7 @@ import {
   viewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { formatFileSize } from '@c2pa-mcnl/shared/utils';
+import { formatFileSize } from '@c2pa-mcnl/shared/utils/helpers';
 import {
   FormValueControl,
   ValidationError,

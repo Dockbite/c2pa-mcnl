@@ -1,5 +1,5 @@
 import crypto from 'node:crypto';
-import { header, log } from '@c2pa-mcnl/shared/node/utils';
+import { header, log } from '@c2pa-mcnl/shared/utils/cli';
 import path from 'node:path';
 import fs from 'node:fs';
 

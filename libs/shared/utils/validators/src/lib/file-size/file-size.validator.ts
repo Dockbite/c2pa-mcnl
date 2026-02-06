@@ -1,5 +1,5 @@
 import { SchemaPath, validate } from '@angular/forms/signals';
-import { formatFileSize } from '@c2pa-mcnl/shared/utils';
+import { formatFileSize } from '@c2pa-mcnl/shared/utils/helpers';
 
 export function fileSizeValidator(
   field: SchemaPath<unknown>,

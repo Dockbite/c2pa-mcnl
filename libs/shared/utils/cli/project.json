@@ -1,7 +1,7 @@
 {
-  "name": "shared-node-utils",
+  "name": "shared-utils-cli",
   "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/node/utils/src",
+  "sourceRoot": "libs/shared/utils/cli/src",
   "projectType": "library",
   "tags": ["scope:shared", "type:util", "runtime:node"],
   "targets": {
@@ -9,9 +9,9 @@
       "executor": "@nx/js:tsc",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/libs/shared/node/utils",
-        "main": "libs/shared/node/utils/src/index.ts",
-        "tsConfig": "libs/shared/node/utils/tsconfig.lib.json",
+        "outputPath": "dist/libs/shared/utils/cli",
+        "main": "libs/shared/utils/cli/src/index.ts",
+        "tsConfig": "libs/shared/utils/cli/tsconfig.lib.json",
         "assets": []
       }
     },

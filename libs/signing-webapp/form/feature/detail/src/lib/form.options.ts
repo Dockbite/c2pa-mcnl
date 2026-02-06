@@ -3,8 +3,8 @@ import {
   fileMimeTypeValidator,
   fileSizeValidator,
   pemCertificateValidator,
-} from '@c2pa-mcnl/shared/util-form-validators';
-import { MIME_TYPES } from '@c2pa-mcnl/shared/utils';
+} from '@c2pa-mcnl/shared/utils/validators';
+import { MIME_TYPES } from '@c2pa-mcnl/shared/utils/constants';
 import { FormData } from './form.model';
 
 export const CERTIFICATE_MIME_TYPES = [

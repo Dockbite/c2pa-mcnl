@@ -1,7 +1,7 @@
 {
-  "name": "util-form-validators",
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "libs/shared/util-form-validators/src",
+  "name": "shared-utils-validators",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/shared/utils/validators/src",
   "prefix": "lib",
   "projectType": "library",
   "tags": ["scope:shared", "type:util"],
@@ -10,7 +10,7 @@
       "executor": "@nx/vitest:test",
       "outputs": ["{options.reportsDirectory}"],
       "options": {
-        "reportsDirectory": "../../../coverage/libs/shared/util-form-validators"
+        "reportsDirectory": "../../../../coverage/libs/shared/utils/validators"
       }
     },
     "lint": {
