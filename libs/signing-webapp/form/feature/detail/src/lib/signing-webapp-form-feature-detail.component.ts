@@ -1,7 +1,7 @@
 import { Component, effect, inject } from '@angular/core';
 import { SigningWebappFormFeatureDetailService } from './signing-webapp-form-feature-detail.service';
 import { form as signalForm } from '@angular/forms/signals';
-import { SigningFormFormUiUploadFileInputComponent } from '@c2pa-mcnl/signing-webapp/form/ui/upload-file-input';
+import { SigningWebappFormUiUploadFileInputComponent } from '@c2pa-mcnl/signing-webapp/form/ui/upload-file-input';
 import { FormModel } from './form.model';
 import {
   ASSET_MAX_SIZE,
@@ -16,7 +16,7 @@ import {
 @Component({
   standalone: true,
   selector: 'lib-signing-webapp-feature-signing-form',
-  imports: [SigningFormFormUiUploadFileInputComponent],
+  imports: [SigningWebappFormUiUploadFileInputComponent],
   templateUrl: './signing-webapp-form-feature-detail.component.html',
   providers: [SigningWebappFormFeatureDetailService],
 })

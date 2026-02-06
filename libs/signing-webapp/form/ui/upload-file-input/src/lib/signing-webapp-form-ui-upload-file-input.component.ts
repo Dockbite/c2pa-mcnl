@@ -3,12 +3,12 @@ import { FileUploadComponent } from '@c2pa-mcnl/shared/ui/file-upload';
 import { FieldTree, FormField } from '@angular/forms/signals';
 
 @Component({
-  selector: 'lib-ui-upload-file-input',
+  selector: 'lib-signing-webapp-form-ui-upload-file-input',
   standalone: true,
   imports: [FileUploadComponent, FormField],
-  templateUrl: './signing-form-form-ui-upload-file-input.component.html',
+  templateUrl: './signing-webapp-form-ui-upload-file-input.component.html',
 })
-export class SigningFormFormUiUploadFileInputComponent {
+export class SigningWebappFormUiUploadFileInputComponent {
   // UI Inputs
   label = input.required<string>();
   inputId = input.required<string>();

@@ -65,7 +65,7 @@ describe('FileUploadComponent', () => {
       dropZone = fixture.debugElement.query(By.css('.border-dashed'));
     });
 
-    it('should set isDragging to true on dragSafe', () => {
+    it('should set isDragging to true on dragOver', () => {
       const event = new DragEvent('dragover');
       vi.spyOn(event, 'preventDefault');
       vi.spyOn(event, 'stopPropagation');
@@ -103,7 +103,6 @@ describe('FileUploadComponent', () => {
 
       expect(component.isDragging()).toBe(false);
       expect(event.preventDefault).toHaveBeenCalled();
-      expect(component.selectedFile()).toBe(VALID_FILE);
       expect(component.value.set).toHaveBeenCalledWith(VALID_FILE);
     });
   });
@@ -117,7 +116,6 @@ describe('FileUploadComponent', () => {
 
       inputEl.triggerEventHandler('change', mockEvent);
 
-      expect(component.selectedFile()).toBe(VALID_FILE);
       expect(component.value.set).toHaveBeenCalledWith(VALID_FILE);
     });
   });
@@ -125,7 +123,6 @@ describe('FileUploadComponent', () => {
   describe('UI Actions', () => {
     it('should remove file and clear input value', () => {
       // Setup initial state
-      component.selectedFile.set(VALID_FILE);
       fixture.detectChanges();
 
       const inputEl = component.fileInput()!.nativeElement;
@@ -139,7 +136,6 @@ describe('FileUploadComponent', () => {
 
       component.removeFile();
 
-      expect(component.selectedFile()).toBeNull();
       expect(inputEl.value).toBe('');
     });
 

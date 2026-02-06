@@ -1,1 +1,1 @@
-export * from './lib/signing-form-form-ui-upload-file-input.component';
+export * from './lib/signing-webapp-form-ui-upload-file-input.component';

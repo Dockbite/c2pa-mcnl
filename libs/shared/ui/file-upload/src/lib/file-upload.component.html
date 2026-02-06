@@ -22,7 +22,7 @@
     (drop)="onDrop($event)"
   >
     <!-- Upload Area -->
-    @if (!selectedFile()) {
+    @if (!value()) {
       <div class="p-6 text-center">
         <div class="mb-4">
           <svg
@@ -68,7 +68,7 @@
     }
 
     <!-- Selected File Display -->
-    @if (selectedFile()) {
+    @if (value()) {
       <div class="p-8">
         <div
           class="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm border border-gray-200"
@@ -91,11 +91,11 @@
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-gray-900 truncate">
-                {{ selectedFile()!.name }}
+                {{ value()!.name }}
               </p>
               <p class="text-sm text-gray-500">
-                {{ formatFileSize(selectedFile()!.size) }} •
-                {{ selectedFile()!.type }}
+                {{ formatFileSize(value()!.size) }} •
+                {{ value()!.type }}
               </p>
             </div>
           </div>

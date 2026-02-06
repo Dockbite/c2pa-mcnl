@@ -67,7 +67,6 @@ export const FormOptions: SchemaOrSchemaFn<FormData> = (schemaPath) => {
    * `didFile` Validations
    */
   required(schemaPath.didFile);
-  pemCertificateValidator(schemaPath.didFile);
   fileSizeValidator(schemaPath.didFile, {
     maxSize: DID_MAX_SIZE,
   });

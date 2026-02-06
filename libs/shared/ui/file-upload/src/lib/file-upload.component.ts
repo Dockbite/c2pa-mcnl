@@ -33,7 +33,6 @@ export class FileUploadComponent implements FormValueControl<File | null> {
   maxFileSizeBytes = input.required<number>();
 
   isDragging = signal(false);
-  selectedFile = signal<File | null>(null);
 
   fileInput = viewChild<ElementRef<HTMLInputElement>>('fileInput');
 
@@ -85,12 +84,10 @@ export class FileUploadComponent implements FormValueControl<File | null> {
   }
 
   private handleFile(file: File): void {
-    this.selectedFile.set(file);
     this.value.set(file);
   }
 
   removeFile(): void {
-    this.selectedFile.set(null);
     this.value.set(null);
 
     // Clear the file input
