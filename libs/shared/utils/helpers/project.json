@@ -13,8 +13,7 @@
         "main": "libs/shared/utils/helpers/src/index.ts",
         "tsConfig": "libs/shared/utils/helpers/tsconfig.lib.json",
         "assets": ["libs/shared/utils/helpers/*.md"],
-        "format": ["cjs"],
-        "generatePackageJson": true
+        "format": ["cjs"]
       }
     },
     "test": {

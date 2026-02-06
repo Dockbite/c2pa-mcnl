@@ -13,8 +13,7 @@
         "main": "libs/shared/utils/constants/src/index.ts",
         "tsConfig": "libs/shared/utils/constants/tsconfig.lib.json",
         "assets": ["libs/shared/utils/constants/*.md"],
-        "format": ["cjs"],
-        "generatePackageJson": true
+        "format": ["cjs"]
       }
     },
     "lint": {
