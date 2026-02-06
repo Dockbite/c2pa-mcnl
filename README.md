@@ -65,10 +65,11 @@ The repository is structured as an Nx monorepo, which allows for efficient manag
   - [signing-webapp](apps/signing-webapp/README.md): A web-based signing tool for attaching C2PA manifests to media files.
 - `./libs`
   - `verify-webapp/*`: Grouping folder for libraries related to the verification webapp.
-  - `signing-webapp/*`: Grouping folder for libraries related to the signing web
+  - `signing-webapp/*`: Grouping folder for libraries related to the signing webapp.
   - `shared/*`: Grouping folder for shared libraries used across multiple apps.
 - `./tools`
   - [did-generator](./tools/did-generator/README.md): A CLI tool for generating Decentralized Identifiers (DIDs) for testing purposes.
+  - [cert-generator](./tools/cert-generator/README.md): A CLI tool for generating x509 certificates for testing purposes.
 
 ### ESLint
 With the help of the `@nx/enforce-module-boundaries` rule, this monorepo enforces strict boundaries between different projects and libraries. This ensures that each project only depends on the libraries it is allowed to use, promoting modularity and maintainability.
