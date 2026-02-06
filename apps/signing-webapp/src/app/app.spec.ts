@@ -1,11 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
-import { FileUploadComponent } from './file-upload/file-upload.component';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [App, FileUploadComponent],
+      imports: [App],
     }).compileComponents();
   });
 

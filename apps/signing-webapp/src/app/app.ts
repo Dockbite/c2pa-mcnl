@@ -1,43 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FileUploadComponent } from '@c2pa-mcnl/shared/ui/file-upload';
-import { formatFileSize } from '@c2pa-mcnl/shared/utils';
+import { Title } from '@angular/platform-browser';
 
 @Component({
-  imports: [CommonModule, RouterModule, FileUploadComponent],
+  imports: [CommonModule, RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css',
 })
-export class App {
-  readonly formatFileSize = formatFileSize;
-  protected title = 'signing-webapp';
+export class App implements OnInit {
+  private readonly titleService = inject(Title);
 
-  // Configure accepted MIME types
-  acceptedMimeTypes: string[] = [
-    'image/jpeg',
-    'image/png',
-    'image/heic',
-    'image/heif',
-    'video/mp4',
-    'audio/mpeg',
-  ];
+  readonly title = 'C2PA MCNL - Signeer tool';
 
-  // 1GB in bytes
-  maxFileSizeBytes = 1024 * 1024 * 1024;
-
-  uploadedFile: File | null = null;
-
-  onFileSelected(file: File): void {
-    console.log('File selected:', file);
-    this.uploadedFile = file;
-    // Process the file here - it's not uploaded to any API
-    // You can read it, transform it, etc.
-  }
-
-  onUploadError(error: string): void {
-    console.error('Upload error:', error);
-    this.uploadedFile = null;
+  ngOnInit() {
+    this.titleService.setTitle(this.title);
   }
 }

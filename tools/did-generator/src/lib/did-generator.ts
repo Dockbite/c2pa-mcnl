@@ -1,7 +1,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { header, log } from '@c2pa-mcnl/shared/node/utils';
+import { header, log } from '@c2pa-mcnl/shared/utils/cli';
 
 // Create DID Document for did:web
 export function createDIDDocument(

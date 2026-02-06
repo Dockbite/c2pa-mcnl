@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { ES256Signer } from 'did-jwt';
 import { createVerifiableCredentialJwt } from 'did-jwt-vc';
-import { log } from '@c2pa-mcnl/shared/node/utils';
+import { log } from '@c2pa-mcnl/shared/utils/cli';
 import { collectCredentialData } from './credential-data-collector'; // Issue Employment Credential using did-jwt-vc
 
 // Issue Employment Credential using did-jwt-vc

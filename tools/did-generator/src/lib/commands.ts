@@ -11,7 +11,7 @@ import {
   header,
   log,
   question,
-} from '@c2pa-mcnl/shared/node/utils';
+} from '@c2pa-mcnl/shared/utils/cli';
 
 function createOutputDirectory(customPath: string) {
   return createOutputDir('did-generator', customPath);

@@ -1,9 +1,9 @@
-<div class="w-full max-w-2xl mx-auto p-6">
+<div class="w-full max-w-2xl mx-auto">
   <!-- Hidden file input - always in DOM -->
   <input
     #fileInput
-    id="file-upload"
-    name="file-upload"
+    [id]="fieldId()"
+    [name]="fieldId()"
     type="file"
     class="sr-only"
     [accept]="acceptAttribute()"
@@ -14,22 +14,22 @@
     class="relative border-2 border-dashed rounded-lg transition-all duration-200 ease-in-out"
     [class.border-blue-500]="isDragging()"
     [class.bg-blue-50]="isDragging()"
-    [class.border-gray-300]="!isDragging() && !errorMessage()"
-    [class.border-red-500]="errorMessage()"
-    [class.bg-red-50]="errorMessage()"
+    [class.border-gray-300]="!isDragging() && !hasErrors()"
+    [class.border-red-500]="hasErrors()"
+    [class.bg-red-50]="hasErrors()"
     (dragover)="onDragOver($event)"
     (dragleave)="onDragLeave($event)"
     (drop)="onDrop($event)"
   >
     <!-- Upload Area -->
-    @if (!selectedFile()) {
-      <div class="p-12 text-center">
+    @if (!value()) {
+      <div class="p-6 text-center">
         <div class="mb-4">
           <svg
             class="mx-auto h-12 w-12 transition-colors"
             [class.text-blue-500]="isDragging()"
-            [class.text-gray-400]="!isDragging() && !errorMessage()"
-            [class.text-red-500]="errorMessage()"
+            [class.text-gray-400]="!isDragging() && !hasErrors()"
+            [class.text-red-500]="hasErrors()"
             stroke="currentColor"
             fill="none"
             viewBox="0 0 48 48"
@@ -46,7 +46,7 @@
 
         <div class="mb-2">
           <label
-            for="file-upload"
+            [for]="fieldId()"
             class="cursor-pointer rounded-md font-semibold text-blue-600 hover:text-blue-500"
           >
             <span>Upload a file</span>
@@ -68,7 +68,7 @@
     }
 
     <!-- Selected File Display -->
-    @if (selectedFile()) {
+    @if (value()) {
       <div class="p-8">
         <div
           class="flex items-center justify-between bg-white rounded-lg p-4 shadow-sm border border-gray-200"
@@ -91,11 +91,11 @@
             </div>
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-gray-900 truncate">
-                {{ selectedFile()!.name }}
+                {{ value()!.name }}
               </p>
               <p class="text-sm text-gray-500">
-                {{ formatFileSize(selectedFile()!.size) }} •
-                {{ selectedFile()!.type }}
+                {{ formatFileSize(value()!.size) }} •
+                {{ value()!.type }}
               </p>
             </div>
           </div>
@@ -134,8 +134,7 @@
     }
   </div>
 
-  <!-- Error Message -->
-  @if (errorMessage()) {
+  @for (errorMessage of errorMessages(); track $index) {
     <div class="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
       <div class="flex">
         <div class="flex-shrink-0">
@@ -154,7 +153,7 @@
           </svg>
         </div>
         <div class="ml-3">
-          <p class="text-sm text-red-700">{{ errorMessage() }}</p>
+          <p class="text-sm text-red-700">{{ errorMessage }}</p>
         </div>
       </div>
     </div>

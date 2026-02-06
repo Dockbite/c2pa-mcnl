@@ -1,0 +1,12 @@
+export const MIME_TYPES = {
+  IMAGE_JPEG: 'image/jpeg',
+  IMAGE_PNG: 'image/png',
+  IMAGE_HEIC: 'image/heic',
+  IMAGE_HEIF: 'image/heif',
+  VIDEO_MP4: 'video/mp4',
+  AUDIO_MPEG: 'audio/mpeg',
+  APPLICATION_JSON: 'application/json',
+  APPLICATION_LD_JSON: 'application/ld+json',
+  APPLICATION_X_X509_CA_CERT: 'application/x-x509-ca-cert',
+  APPLICATION_X_PEM_FILE: 'application/x-pem-file',
+};

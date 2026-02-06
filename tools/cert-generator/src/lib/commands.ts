@@ -9,7 +9,7 @@ import {
   header,
   log,
   question,
-} from '@c2pa-mcnl/shared/node/utils';
+} from '@c2pa-mcnl/shared/utils/cli';
 import {
   type CertificateSubject,
   generateCertificateChain,
