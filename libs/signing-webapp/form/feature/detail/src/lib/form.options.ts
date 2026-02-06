@@ -5,7 +5,7 @@ import {
   pemCertificateValidator,
 } from '@c2pa-mcnl/shared/util-form-validators';
 import { MIME_TYPES } from '@c2pa-mcnl/shared/utils';
-import { SigningFormData } from './signing-form.model';
+import { FormData } from './form.model';
 
 export const CERTIFICATE_MIME_TYPES = [
   MIME_TYPES.APPLICATION_X_X509_CA_CERT,
@@ -30,9 +30,7 @@ export const CERTIFICATE_MAX_SIZE = 5 * 1024 * 1024;
 export const DID_MAX_SIZE = 2 * 1024 * 1024;
 export const ASSET_MAX_SIZE = 1024 * 1024 * 1024;
 
-export const SigningFormOptions: SchemaOrSchemaFn<SigningFormData> = (
-  schemaPath,
-) => {
+export const FormOptions: SchemaOrSchemaFn<FormData> = (schemaPath) => {
   /**
    * `leafCertificate` Validations
    */

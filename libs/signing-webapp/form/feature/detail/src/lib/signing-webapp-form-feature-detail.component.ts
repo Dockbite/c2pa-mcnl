@@ -1,8 +1,8 @@
 import { Component, effect, inject } from '@angular/core';
-import { SigningWebappFeatureSigningFormService } from './signing-webapp-feature-signing-form.service';
-import { form } from '@angular/forms/signals';
+import { SigningWebappFormFeatureDetailService } from './signing-webapp-form-feature-detail.service';
+import { form as signalForm } from '@angular/forms/signals';
 import { UiUploadFileInputComponent } from '@c2pa-mcnl/signing-webapp/ui-upload-file-input';
-import { SigningFormModel } from './signing-form.model';
+import { FormModel } from './form.model';
 import {
   ASSET_MAX_SIZE,
   ASSET_MIME_TYPES,
@@ -10,18 +10,18 @@ import {
   CERTIFICATE_MIME_TYPES,
   DID_MAX_SIZE,
   DID_MIME_TYPES,
-  SigningFormOptions,
-} from './signing-form.options';
+  FormOptions,
+} from './form.options';
 
 @Component({
   standalone: true,
   selector: 'lib-signing-webapp-feature-signing-form',
   imports: [UiUploadFileInputComponent],
-  templateUrl: './signing-webapp-feature-signing-form.component.html',
-  providers: [SigningWebappFeatureSigningFormService],
+  templateUrl: './signing-webapp-form-feature-detail.component.html',
+  providers: [SigningWebappFormFeatureDetailService],
 })
-export class SigningWebappFeatureSigningFormComponent {
-  private readonly service = inject(SigningWebappFeatureSigningFormService);
+export class SigningWebappFormFeatureDetailComponent {
+  private readonly service = inject(SigningWebappFormFeatureDetailService);
 
   certificateMimeTypes = CERTIFICATE_MIME_TYPES;
   certificateMaxSize = CERTIFICATE_MAX_SIZE;
@@ -30,8 +30,8 @@ export class SigningWebappFeatureSigningFormComponent {
   assetMimeTypes = ASSET_MIME_TYPES;
   assetMaxSize = ASSET_MAX_SIZE;
 
-  signingModel = SigningFormModel;
-  signingForm = form(this.signingModel, SigningFormOptions);
+  signingModel = FormModel;
+  signingForm = signalForm(this.signingModel, FormOptions);
 
   constructor() {
     effect(() => {

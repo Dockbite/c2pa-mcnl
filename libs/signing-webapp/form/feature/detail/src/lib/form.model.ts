@@ -1,6 +1,6 @@
 import { signal } from '@angular/core';
 
-export interface SigningFormData {
+export interface FormData {
   leafCertificate: File | null;
   leafPrivateKey: File | null;
   intermediateCertificate: File | null;
@@ -8,7 +8,7 @@ export interface SigningFormData {
   assetFile: File | null;
 }
 
-export const SigningFormModel = signal<SigningFormData>({
+export const FormModel = signal<FormData>({
   leafCertificate: null,
   leafPrivateKey: null,
   intermediateCertificate: null,
